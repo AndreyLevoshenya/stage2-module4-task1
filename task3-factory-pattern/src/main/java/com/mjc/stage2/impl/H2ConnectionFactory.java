@@ -10,7 +10,6 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class H2ConnectionFactory implements ConnectionFactory {
-    public static final String DRIVER = "jdbc_driver";
     public static final String URL = "db_url";
     public static final String USER = "user";
     public static final String PASSWORD = "password";
@@ -22,9 +21,8 @@ public class H2ConnectionFactory implements ConnectionFactory {
         String user = properties.getProperty(USER);
         String password = properties.getProperty(PASSWORD);
         try {
-            Class.forName(DRIVER);
             connection = DriverManager.getConnection(url, user, password);
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return connection;
